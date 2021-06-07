@@ -9,6 +9,25 @@ import matplotlib.pyplot as plt
 from sklearn.datasets import make_blobs
 ```
 
+## Data
+
+
+```python
+data = make_blobs(n_samples=1000, n_features=2, centers=3)
+```
+
+
+```python
+plt.scatter([i[0] for i in data[0]], [i[1] for i in data[0]])
+plt.show()
+```
+
+
+    
+![png](images/Kmeans_5_0.png)
+    
+
+
 ## KMeans Algorithm
 
 Steps:
@@ -49,25 +68,47 @@ class KMeans:
 
 
 ```python
-data = make_blobs(n_samples=1000, n_features=2, centers=3)
-```
-
-
-```python
 model = KMeans(k=3)
 model.fit(data[0])
 ```
 
 
 ```python
-plt.scatter([i[0] for i in data[0]], [i[1] for i in data[0]])
+model.classes[:15]
+```
+
+
+
+
+    [0, 1, 2, 1, 1, 0, 0, 2, 2, 0, 2, 1, 1, 1, 1]
+
+
+
+
+```python
+plt.scatter(
+    [i[0] for i in data[0]], 
+    [i[1] for i in data[0]],
+    c=model.classes
+)
 
 for i in model.centroids:
-    plt.scatter(i[0], i[1], marker='*', s=130, c='yellow')
+    plt.scatter(
+        i[0], 
+        i[1], 
+        s=120, 
+        c='orange', 
+        marker='o',
+        edgecolor='black',
+        linewidth=1,
+        label='Centroids'
+    )
+plt.legend()
 plt.show()
 ```
 
 
     
-![png](images/Kmeans_8_0.png)
+![png](images/Kmeans_11_0.png)
     
+
